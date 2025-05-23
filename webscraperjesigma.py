@@ -60,6 +60,32 @@ def scrape(odkaz):
             for procento_druha_tabulka in hledam_procenta_strany_druha_tabulka:
                 pocet_procent_strany.append(procento_druha_tabulka.text)
             print("adresa je cool a funguje jsi cool",count)
+scrape("https://volby.cz/pls/ps2017nss/ps32?xjazyk=CZ&xkraj=12&xnumnuts=7103")
+output_filename = "vysledky_obci.csv"
+
+#hlavičky pro každý sloupec
+headers = ["Cislo Obce", "Nazev Obce", "Pocet Volicu", "Pocet Obalek", "Pocet Validnich Obalek"]
+
+try:
+    with open(output_filename, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(headers)
+        cisla_ob = len(cislo_obci)
+        for i in range(cisla_ob):
+            row = [
+                cislo_obci[i] if i < len(cislo_obci) else "N/A",
+                nazev_obci[i] if i < len(nazev_obci) else "N/A",
+                pocet_volicu[i] if i < len(pocet_volicu) else "N/A",
+                pocet_obalek[i] if i < len(pocet_obalek) else "N/A",
+                pocet_valid_obalek[i] if i < len(pocet_valid_obalek) else "N/A"
+            ]
+            writer.writerow(row)
+    print(f"\nData byla úspěšně zapsána do souboru '{output_filename}'")
+
+except IndexError as e:
+    print(f"\nChyba při zápisu do CSV: Nesoulad v délce seznamů. Zkontrolujte, zda se všechny seznamy plní pro každou obec. Chyba: {e}")
+except Exception as e:
+    print(f"\nNastala neočekávaná chyba při zápisu do CSV: {e}")
 
 
 
