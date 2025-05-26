@@ -87,14 +87,3 @@ except IndexError as e:
 except Exception as e:
     print(f"\nNastala neočekávaná chyba při zápisu do CSV: {e}")
 
-
-
-
-
-#for index,cislo in enumerate(cislo_obci):
-    #https: // www.volby.cz / pls / ps2017nss / ps311?xjazyk = CZ & xkraj = 12 & xobec = {cislo} & xvyber = 7103
-
-#prevod do csv
-#try:
-    #with open(file, 'w', newline='', encoding='utf-8') as csvfile:
-        #writer = csv.writer(csvfile)
